@@ -1,0 +1,57 @@
+# General
+.DS_Store
+.DartTool
+.idea
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache
+.pub/
+/build/
+# Si usas VSCode
+.vscode/
+
+# Android relacionado
+**/android/.gradle
+**/android/.idea
+**/android/**/*.jks
+**/android/**/*.properties
+**/android/**/local.properties
+
+# iOS relacionado
+**/ios/.symlinks/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/podhelper.rb
+**/ios/Pods/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Runner.xcworkspace/contents.xcworkspacedata
+**/ios/Runner.xcodeproj/xcuserdata/
+**/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+**/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+# macOS relacionado
+**/macos/Pods/
+**/macos/Flutter/ephemeral/
+**/macos/Flutter/.last_build_id
+**/macos/Flutter/flutter_export_environment.sh
+**/macos/Flutter/Generated.xcconfig
+**/macos/Flutter/podhelper.rb
+
+# Web relacionado
+**/web/manifest.json
+
+# Iconos generados
+**/android/app/src/main/res/drawable-*/ic_launcher.png
+**/android/app/src/main/res/drawable-*/ic_launcher_background.png
+**/android/app/src/main/res/mipmap-*/ic_launcher.png
+**/android/app/src/main/res/mipmap-*/ic_launcher_round.png
+**/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-*.png
+**/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+
+# Archivos de llaves de firma (si se utilizan)
+/key.properties
+
+# Archivos de configuración específicos del entorno que no deben ser compartidos
+/env/

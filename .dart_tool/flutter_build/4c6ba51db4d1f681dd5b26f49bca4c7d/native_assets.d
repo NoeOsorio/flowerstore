@@ -1,0 +1,1 @@
+ /Users/noe/Dev/Freelance/flower_store/.dart_tool/flutter_build/4c6ba51db4d1f681dd5b26f49bca4c7d/native_assets.yaml: 
