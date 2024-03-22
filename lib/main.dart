@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _indiceTabActual = 0;
-  final List<Widget> _pantallas = [PantallaInicio(), CategoriasScreen(), CarritoScreen(), PerfilScreen()];
+  final List<Widget> _pantallas = [PantallaInicio(), const CategoriasScreen(), const CarritoScreen(), const PerfilScreen()];
 
   void _seleccionarPantalla(int indice) {
     setState(() {

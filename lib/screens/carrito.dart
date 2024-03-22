@@ -2,6 +2,8 @@ import 'package:flower_store/types/producto.dart';
 import 'package:flutter/material.dart';
 
 class CarritoScreen extends StatefulWidget {
+  const CarritoScreen({super.key});
+
   @override
   _CarritoScreenState createState() => _CarritoScreenState();
 }
@@ -15,6 +17,7 @@ class _CarritoScreenState extends State<CarritoScreen> {
       precio: 10.99,
       cantidad: 1,
       tipoYTiempoEnvio: 'Envío en 24h',
+        descripcion: 'Descripción del producto 1'
     ),
     ProductoCarrito(
       imagen: 'https://img.freepik.com/foto-gratis/colores-vibrantes-naturaleza-cerca-margarita-purpura-humeda-generada-inteligencia-artificial_25030-63819.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1709424000&semt=ais',
@@ -23,6 +26,7 @@ class _CarritoScreenState extends State<CarritoScreen> {
       precio: 15.99,
       cantidad: 2,
       tipoYTiempoEnvio: 'Envío en 24h',
+        descripcion: 'Descripción del producto 2'
     ),
     // Agrega más productos aquí
   ];

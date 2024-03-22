@@ -4,6 +4,7 @@ class Producto {
   final String codigo;
   final double precio;
   final String tipoYTiempoEnvio;
+  final String descripcion;
 
   Producto({
     required this.imagen,
@@ -11,6 +12,7 @@ class Producto {
     required this.codigo,
     required this.precio,
     required this.tipoYTiempoEnvio,
+    required this.descripcion,
   });
 }
 
@@ -22,7 +24,8 @@ class ProductoCarrito extends Producto {
     required super.titulo,
     required super.codigo,
     required super.precio,
-    required this.cantidad,
     required super.tipoYTiempoEnvio,
+    required super.descripcion,
+    required this.cantidad,
   });
 }

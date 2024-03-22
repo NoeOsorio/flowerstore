@@ -1,3 +1,4 @@
+import 'package:flower_store/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 import '../types/producto.dart';
@@ -12,6 +13,7 @@ class PantallaInicio extends StatelessWidget {
       codigo: '001',
       precio: 10.99,
       tipoYTiempoEnvio: 'Envio en 2 dias',
+        descripcion: 'Descripcion del producto 1'
     ),
     Producto(
       imagen:
@@ -20,6 +22,7 @@ class PantallaInicio extends StatelessWidget {
       codigo: '002',
       tipoYTiempoEnvio: 'Envío en 24h',
       precio: 15.99,
+        descripcion: 'Descripcion del producto 2'
     ),
   ];
 
@@ -27,54 +30,16 @@ class PantallaInicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       body: ListView.builder(
         itemCount: productos.length,
         itemBuilder: (context, index) {
           var producto = productos[index];
-          return Container(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              
-              children: [
-                Image.network(producto.imagen, width: 100), // Imagen del producto
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(producto.tipoYTiempoEnvio),
-                        const Divider(),
-                        Text('\$${producto.precio.toString()}'),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-
-                            ElevatedButton(
-                              onPressed: () {
-                                // Lógica para agregar al carrito
-                              },
-                              style: ElevatedButton.styleFrom(
-                                // foregroundColor: Colors.black,
-                                foregroundColor: Colors.grey[500],
-                                backgroundColor: const Color(0xAAFFEB96),
-                                side: null,
-                              ),
-                              child: const Text('Agregar al carrito'),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
+          return ProductCard(
+              producto: producto,
+              onTap: () => {
+                    // Lógica para agregar al carrito
+                    print('Producto $index agregado al carrito')
+                  });
         },
       ),
     );
