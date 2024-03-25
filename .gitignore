@@ -17,6 +17,7 @@
 **/android/**/*.jks
 **/android/**/*.properties
 **/android/**/local.properties
+**/android/app/google-services.json
 
 # iOS relacionado
 **/ios/.symlinks/
@@ -30,6 +31,7 @@
 **/ios/Runner.xcodeproj/xcuserdata/
 **/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
 **/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+**/ios/Runner/GoogleService-Info.plist
 
 # macOS relacionado
 **/macos/Pods/
