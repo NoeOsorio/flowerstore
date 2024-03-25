@@ -58,3 +58,5 @@
 
 # Archivos de configuración específicos del entorno que no deben ser compartidos
 .env
+
+.dart_tool/
