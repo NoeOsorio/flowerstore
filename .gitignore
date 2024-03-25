@@ -40,6 +40,7 @@
 **/macos/Flutter/flutter_export_environment.sh
 **/macos/Flutter/Generated.xcconfig
 **/macos/Flutter/podhelper.rb
+**/macos/Runner/GoogleService-Info.plist
 
 # Web relacionado
 **/web/manifest.json
