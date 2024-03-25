@@ -1,5 +1,5 @@
 class Producto {
-  final int id;
+  final String id;
   final String imagen;
   final String titulo;
   final String codigo;
@@ -16,6 +16,18 @@ class Producto {
     required this.tipoYTiempoEnvio,
     required this.descripcion,
   });
+
+  factory Producto.fromFirebase(Map<String, dynamic> data, String id) {
+    return Producto(
+      id: id,
+      imagen: data['imagen'],
+      titulo: data['titulo'],
+      codigo: data['codigo'],
+      precio: data['precio'],
+      tipoYTiempoEnvio: data['tipoYTiempoEnvio'],
+      descripcion: data['descripcion'],
+    );
+  }
 }
 
 class ProductoCarrito extends Producto {
