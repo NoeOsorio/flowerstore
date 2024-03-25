@@ -1,4 +1,4 @@
-import 'package:flower_store/state/carrito_state.dart';
+import 'package:flowerstore/state/carrito_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

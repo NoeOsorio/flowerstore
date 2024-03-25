@@ -1,4 +1,4 @@
-import 'package:flower_store/types/producto.dart';
+import 'package:flowerstore/types/producto.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CarritoState {

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.noeosorio" "\0"
-            VALUE "FileDescription", "flower_store" "\0"
+            VALUE "FileDescription", "flowerstore" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flower_store" "\0"
+            VALUE "InternalName", "flowerstore" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.noeosorio. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flower_store.exe" "\0"
-            VALUE "ProductName", "flower_store" "\0"
+            VALUE "OriginalFilename", "flowerstore.exe" "\0"
+            VALUE "ProductName", "flowerstore" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

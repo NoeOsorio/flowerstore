@@ -1,6 +1,6 @@
-import 'package:flower_store/state/carrito_state.dart';
+import 'package:flowerstore/state/carrito_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flower_store/widgets/product_card.dart';
+import 'package:flowerstore/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 import '../types/producto.dart';

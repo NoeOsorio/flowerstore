@@ -1,4 +1,4 @@
-import 'package:flower_store/types/producto.dart';
+import 'package:flowerstore/types/producto.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatefulWidget {
