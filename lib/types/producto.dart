@@ -1,4 +1,5 @@
 class Producto {
+  final int id;
   final String imagen;
   final String titulo;
   final String codigo;
@@ -7,6 +8,7 @@ class Producto {
   final String descripcion;
 
   Producto({
+    required this.id,
     required this.imagen,
     required this.titulo,
     required this.codigo,
@@ -20,6 +22,7 @@ class ProductoCarrito extends Producto {
   int cantidad;
 
   ProductoCarrito({
+    required super.id,
     required super.imagen,
     required super.titulo,
     required super.codigo,

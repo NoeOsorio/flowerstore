@@ -1,82 +1,27 @@
-import 'package:flower_store/types/producto.dart';
+import 'package:flower_store/state/carrito_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CarritoScreen extends StatefulWidget {
+class CarritoScreen extends ConsumerStatefulWidget {
   const CarritoScreen({super.key});
 
   @override
-  _CarritoScreenState createState() => _CarritoScreenState();
+  ConsumerState<CarritoScreen> createState() => _CarritoScreenState();
 }
 
-class _CarritoScreenState extends State<CarritoScreen> {
-  List<ProductoCarrito> productos = [
-    ProductoCarrito(
-      imagen: 'https://img.freepik.com/foto-gratis/colores-vibrantes-naturaleza-cerca-margarita-purpura-humeda-generada-inteligencia-artificial_25030-63819.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1709424000&semt=ais',
-      titulo: 'Producto 1',
-      codigo: '001',
-      precio: 10.99,
-      cantidad: 1,
-      tipoYTiempoEnvio: 'Envío en 24h',
-        descripcion: 'Descripción del producto 1'
-    ),
-    ProductoCarrito(
-      imagen: 'https://img.freepik.com/foto-gratis/colores-vibrantes-naturaleza-cerca-margarita-purpura-humeda-generada-inteligencia-artificial_25030-63819.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1709424000&semt=ais',
-      titulo: 'Producto 2',
-      codigo: '002',
-      precio: 15.99,
-      cantidad: 2,
-      tipoYTiempoEnvio: 'Envío en 24h',
-        descripcion: 'Descripción del producto 2'
-    ),
-    // Agrega más productos aquí
-  ];
-
-  double subtotal = 0;
-  double costoEnvio = 5.99;
-  double total = 0;
-
+class _CarritoScreenState extends ConsumerState<CarritoScreen> {
   @override
   void initState() {
     super.initState();
-    calcularTotal();
-  }
-
-  void calcularTotal() {
-    double tempSubtotal = 0;
-    for (var producto in productos) {
-      tempSubtotal += producto.precio * producto.cantidad;
-    }
-    setState(() {
-      subtotal = tempSubtotal;
-      total = subtotal + costoEnvio;
-    });
-  }
-
-  void eliminarProducto(int index) {
-    setState(() {
-      productos.removeAt(index);
-      calcularTotal();
-    });
-  }
-
-  void aumentarCantidad(int index) {
-    setState(() {
-      productos[index].cantidad++;
-      calcularTotal();
-    });
-  }
-
-  void reducirCantidad(int index) {
-    setState(() {
-      if (productos[index].cantidad > 1) {
-        productos[index].cantidad--;
-        calcularTotal();
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final carritoState = ref.watch(carritoProvider);
+    final carrito = carritoState.productos;
+    double subtotal = carritoState.subtotal;
+    double costoEnvio = carritoState.costoEnvio;
+    double total = carritoState.total;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Carrito de Compras'),
@@ -85,44 +30,55 @@ class _CarritoScreenState extends State<CarritoScreen> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: productos.length,
+              itemCount: carrito.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Image.network(
-                    productos[index].imagen,
-                    width: 50,
-                    height: 50,
-                  ),
-                  title: Text(productos[index].titulo),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Código: ${productos[index].codigo}'),
-                      Text('Precio: \$${productos[index].precio.toStringAsFixed(2)}'),
-                      Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () => reducirCantidad(index),
-                          ),
-                          Text(productos[index].cantidad.toString()),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () => aumentarCantidad(index),
-                          ),
-                          if (productos[index].cantidad == 1)
+                    leading: Image.network(
+                      carrito[index].imagen,
+                      width: 50,
+                      height: 50,
+                    ),
+                    title: Text(carrito[index].titulo),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Código: ${carrito[index].codigo}'),
+                            Text('Precio: \$${carrito[index].precio.toStringAsFixed(2)}'),
+                          ],
+                        ),
+                        Row(
+                          children: [
                             IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () => eliminarProducto(index),
+                              icon: const Icon(Icons.remove),
+                              onPressed: () => {
+                                ref.read(carritoProvider.notifier).reducirCantidad(carrito[index].codigo),
+                              },
                             ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
+                            Text(carrito[index].cantidad.toString()),
+                            IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: () => {
+                                ref.read(carritoProvider.notifier).aumentarCantidad(carrito[index].codigo),
+                              },
+                            ),
+                            if (carrito[index].cantidad == 1)
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () => {
+                                  ref.read(carritoProvider.notifier).removerDelCarrito(carrito[index].codigo),
+                                },
+                              ),
+                          ],
+                        ),
+                      ],
+                    ));
               },
             ),
           ),
+          
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: TextField(
@@ -145,15 +101,29 @@ class _CarritoScreenState extends State<CarritoScreen> {
             trailing: Text('\$${total.toStringAsFixed(2)}'),
           ),
           const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              // Lógica para realizar el pedido
-            },
-            child: Text('Realizar Pedido (\$${total.toStringAsFixed(2)})'),
-          ),
+          Container(
+            width: 400,
+            margin: const EdgeInsets.only(bottom: 16),
+            child: ElevatedButton(
+              onPressed: () {
+                // Lógica para realizar el pedido
+              },
+              style: ElevatedButton.styleFrom(
+                // foregroundColor: Colors.black,
+
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                foregroundColor: Colors.grey[500],
+                backgroundColor: const Color(0xAAFFEB96),
+                side: null,
+              ),
+              child:
+                  Text('Realizar Pedido (\$${total.toStringAsFixed(2)})', style: const TextStyle(color: Colors.black)),
+            ),
+          )
         ],
       ),
     );
   }
 }
-

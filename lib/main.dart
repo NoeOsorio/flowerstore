@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'screens/carrito.dart';
 import 'screens/categorias.dart';
 import 'screens/inicio.dart';
 import 'screens/perfil.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +36,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _indiceTabActual = 0;
-  final List<Widget> _pantallas = [PantallaInicio(), const CategoriasScreen(), const CarritoScreen(), const PerfilScreen()];
+  final List<Widget> _pantallas = [
+    PantallaInicio(),
+    const CategoriasScreen(),
+    const CarritoScreen(),
+    const PerfilScreen()
+  ];
 
   void _seleccionarPantalla(int indice) {
     setState(() {
@@ -49,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: const Color(0xAAFFEB96),
         title: Text(widget.title),
-      
       ),
       body: _pantallas[_indiceTabActual],
       bottomNavigationBar: BottomNavigationBar(
